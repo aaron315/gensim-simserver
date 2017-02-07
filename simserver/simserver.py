@@ -553,7 +553,7 @@ class SimServer(object):
 
 
     @gensim.utils.synchronous('lock_update')
-    def train(self, corpus=None, method='auto', clear_buffer=True, params=None):
+    def train(self, corpus=None, method='auto', clear_buffer=True, params=None,**kwargs):
         """
         Create an indexing model. Will overwrite the model if it already exists.
         All indexes become invalid, because documents in them use a now-obsolete
@@ -579,7 +579,7 @@ class SimServer(object):
                 method = 'lsi'
         if params is None:
             params = {}
-        self.model = SimModel(self.fresh_docs, method=method, params=params)
+        self.model = SimModel(self.fresh_docs, method=method, params=params,**kwargs)
         self.flush(save_model=True, clear_buffer=clear_buffer)
 
 
